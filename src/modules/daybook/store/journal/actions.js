@@ -1,6 +1,6 @@
 
 
-  import journalApi from "../../../../api/journalApi"
+  import journalApi from "@/api/journalApi"
 //?export const myAction = async ({commit})=>{
 
 
@@ -29,8 +29,8 @@ export const loadEntries= async ({commit})=>{
 }
 export const updateEntry= async ({commit},entry)=>{ //entry debe ser un parametro
   // extraerl solo lo necesario //-id
-    const { date,text,picture}= entry
-    const dataSave ={date,text,picture}
+    const { date,picture,text}= entry
+    const dataSave ={date,picture,text}
     //console.log(commit)
     //console.log(dataSave)
   // await journalApi.put(`PHAT .json`, dataToSave)
@@ -41,11 +41,10 @@ export const updateEntry= async ({commit},entry)=>{ //entry debe ser un parametr
   commit('updateEntry',{...entry})
 }
 //* crear una nueva entrada 
-//TODO:tiene errores
 export const createEntry= async ({commit}, entry)=>{
   //datatoSave
-  const { date,text,picture}= entry
-  const dataToSave= {date,text,picture}
+  const { date,picture, text}= entry
+  const dataToSave= {date,picture,text}
 
   //const {data}=await journalApi.post(`entries/${entry.id}.json`,dataSave)
   const {data} = await journalApi.post(`entries.json`,dataToSave)
@@ -53,7 +52,11 @@ export const createEntry= async ({commit}, entry)=>{
   // data = "name": {"-Mpy59UpEA8g6-RKSyAQ"}
   dataToSave.id = data.name
   //commit de addEntry
-  commit('addEntry',{dataToSave})
+  console.log(dataToSave)
+  console.log({dataToSave})
+
+  //! ojo con enviar la data desestructurada
+  commit('addEntry',dataToSave)
 
   return data.name
 }

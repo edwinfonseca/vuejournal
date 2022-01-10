@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preubeas de Home view debe hacer match con snapshot 1`] = `
+<div class="home"><img alt="Vue logo" src="">
+  <h1>hola mundo</h1><button class="btn btn-primary">primary</button><button class="btn btn-secondary">secondary</button><button class="btn btn-success">success</button>
+</div>
+`;

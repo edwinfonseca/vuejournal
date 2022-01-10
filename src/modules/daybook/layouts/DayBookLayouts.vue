@@ -5,8 +5,10 @@
      class="row justyfy-content-md-center">
         <div class="col-3 alert-info text-center mt-5" >
             Espere por favor...
-            {{isLoading}}
-            <h3 class="fa fa-spin fa-sync"></h3>
+           <!--  {{isLoading}}-->
+            <h3 class="mt-2">
+                <i class="fa fa-spin fa-sync"></i>
+            </h3>
         </div>
     </div>
     <div
@@ -16,7 +18,7 @@
             <EntryList/>
         </div>
         <div class="col">
-            <router-view></router-view>
+            <router-view/>
         </div>
     </div>
 </template>
@@ -29,12 +31,13 @@ export default {
         NavBar: defineAsyncComponent(()=>import('../components/NavBar.vue') ),
         EntryList: defineAsyncComponent(()=>import('../components/EntryList.vue') )
     },
-    computed:{
-        ...mapState('journal',['isLoading']),
-    },
     methods:{
         ...mapActions('journal',['loadEntries'])
     },
+    computed:{
+        ...mapState('journal',['isLoading']),
+    },
+    
     created(){
         this.loadEntries()
     }

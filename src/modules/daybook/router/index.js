@@ -1,6 +1,6 @@
 export default {
     name: 'daybook',
-    component: () => import(/* webpackChunkName: "daybooklayout" */ '@/modules/daybook/layouts/DayBookLayouts'),
+    component: () => import(/* webpackChunkName: "daybook" */ '@/modules/daybook/layouts/DayBookLayouts'),
     children:[
         {
             path: '',
@@ -10,7 +10,7 @@ export default {
         {
             path: ':id',
             name: 'entry',
-            component:()=>import(/* webpackChunkName: "daybook-EntryView"*/ '@/modules/daybook/views/EntryView'),
+            component:()=>import(/* webpackChunkName: "daybook-no-entry"*/ '@/modules/daybook/views/EntryView'),
             //*enviar el id de la url
             props:(route)=>{
                 return{

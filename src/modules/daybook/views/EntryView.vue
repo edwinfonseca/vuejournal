@@ -59,11 +59,15 @@ import uploadImage from '../helpers/uploadImage'
 import Swal from 'sweetalert2'
 
 export default {
+    name:'EntryView',
     props:{
         id:{
             type:String,
             required:true
         }
+    },
+    components:{
+        Fab: defineAsyncComponent(()=>import('../components/Fab.vue'))
     },
     data(){
         return{
@@ -72,9 +76,7 @@ export default {
             file:null
         }
     },
-    components:{
-        Fab: defineAsyncComponent(()=>import('../components/Fab.vue'))
-    },
+    
     computed:{
         ...mapGetters('journal',['getEntryById']),
         day(){
@@ -127,15 +129,15 @@ export default {
                 console.log('guardando entrada')
                 //* disparar la accion del journal module
                 await this.updateEntry(this.entry)
-                console.log(this.entry)
+                //console.log(this.entry)
             }else{
                 //*quiere crear una nueva entrada
-                console.log('crear una nueva trada')
+                //console.log('crear una nueva entrada')
                 //await action
                 const id = await this.createEntry(this.entry) 
-                console.log(this.entry)
-                console.log(id)
-                return this.$router.push({name:'entry',params: {id}})
+                //console.log(this.entry)
+                //console.log(id)
+                this.$router.push({name:'entry',params: {id}})
                 //redirection al id de la nueva entrada 
             }
             // * limpiar file
@@ -145,7 +147,7 @@ export default {
 
         }, 
         async onDeleteEntry(){
-            const isConfirmed =await Swal.fire({
+            const {isConfirmed} =await Swal.fire({
                 title:'¿ests seguro ?',
                 text:'una vez borrado no se podra recuperar',
                 showDenyButton:true,
@@ -169,7 +171,7 @@ export default {
             }
         },
         onSelectImg(event){
-            console.log(event.target.files[0])
+            //console.log(event.target.files[0])
             const file =event.target.files[0]
             if(!file){
                 this.localImg=null
@@ -181,7 +183,6 @@ export default {
             const fr= new FileReader()
             fr.onload = ()=> this.localImg = fr.result
             fr.readAsDataURL(file) 
-            this.localImg
         },
         selectImg(){
             //console.log(this.$refs)

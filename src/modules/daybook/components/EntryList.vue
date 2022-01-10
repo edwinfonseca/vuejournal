@@ -1,5 +1,4 @@
 <template>
-    <h1>EntryList!!!</h1>
     <div class="entry-list-container">
         <div class="px2 pt-2">
             <input type="text" 
@@ -14,9 +13,9 @@
             </button>
         </div>
         <div class="entry-scrollarea">
-            <Entry v-for="item in entriesByTerm" 
-            :key="item.id" 
-            :entry="item"></Entry>
+            <Entry v-for="entry in entriesByTerm" 
+            :key="entry.id" 
+            :entry="entry"></Entry>
         </div>
     </div>
 </template>

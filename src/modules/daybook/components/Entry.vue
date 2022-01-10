@@ -20,11 +20,8 @@ export default {
     props:{
         entry:{
             type: Object,
-            requiere:true
+            required:true
         }
-    },
-    mounted(){
-        //console.log(this.entry)
     },
     computed:{
         //*recota los textos 
