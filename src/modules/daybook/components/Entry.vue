@@ -1,20 +1,56 @@
 <template>
     <div class="entry-container mb3 pointer p2" 
-    @click="$router.push({name:'entry', params:{id:10} })">
+    @click="$router.push({name:'entry', params:{id:entry.id} })">
         <div class="entry-title d-flex">
-            <span class="text-success fs-5 fw-bold"> 24 </span>
-            <span class="mx-1 fs-5">Noviembre</span>
-            <span class="mx-2 fw-light">2021, miercoles</span>
+            <span class="text-success fs-5 fw-bold">{{day}} </span>
+            <span class="mx-1 fs-5">{{month}}</span>
+            <span class="mx-2 fw-light">{{yearDay}}</span>
         </div>
         <div class="entry-description">
-            Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final
+            {{shortText}}
         </div>
     </div>  
 </template>
 
 <script>
-export default {
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
 
+export default {
+    props:{
+        entry:{
+            type: Object,
+            requiere:true
+        }
+    },
+    mounted(){
+        //console.log(this.entry)
+    },
+    computed:{
+        //*recota los textos 
+        shortText(){
+                return (this.entry.text.length> 130)
+                        ? this.entry.text.substring(0,130)+ '...'
+                        : this.entry.text
+            //return this.entry.text
+        },
+        //* 
+        day(){
+            const date = new Date( this.entry.date)
+            //*console.log(date)
+            return date.getDate()
+        },
+        month(){
+            const date = new Date( this.entry.date)
+            //console.log('mes:',date.getMonth())
+            return months[date.getMonth()]
+        },
+        yearDay(){
+            const date = new Date( this.entry.date)
+            //console.log('año',date.getFullYear(),' dia:',date.getDay())
+            return `${date.getFullYear()}, ${days[date.getDay()]}`
+        }
+    }
 }
 </script>
 

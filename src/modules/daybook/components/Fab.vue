@@ -1,5 +1,7 @@
 <template>
-    <button class="btn btn-pimary">
+    <button
+    @click="$emit('on:click')"
+     class="btn btn-pimary">
         <i class="fa fa-2x" :class="icon"></i>
     </button>
 </template>
