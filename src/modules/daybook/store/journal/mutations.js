@@ -31,3 +31,6 @@ export const deleteEntry = (state,id)=>{
 
 }
 
+export const clearEntries = (state)=>{
+    state.entries=[]
+}
